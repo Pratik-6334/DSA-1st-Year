@@ -1,0 +1,43 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] originalArray = {1000, 11, 445, 1, 330, 3000};
+        int[] resultArray = findMaxMin(originalArray);
+        System.out.println("Original Array: " + Arrays.toString(originalArray));
+        System.out.println("Result Array: " + Arrays.toString(resultArray));
+    }
+
+    public static int[] findMaxMin(int[] array) {
+        int[] result = new int[(array.length / 2) + (array.length % 2)];
+        int maxIndex = 0;
+        int minIndex = 0;
+        int maxVal = array[0];
+        int minVal = array[0];
+
+        // Find maximum and minimum values in the original array
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > maxVal) {
+                maxVal = array[i];
+                maxIndex = i;
+            } else if (array[i] < minVal) {
+                minVal = array[i];
+                minIndex = i;
+            }
+        }
+
+        // Create the result array with alternating max and min values
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i == maxIndex) {
+                result[j++] = maxVal;
+            } else if (i == minIndex) {
+                result[j++] = minVal;
+            } else {
+                result[j++] = array[i];
+            }
+        }
+
+        return result;
+    }
+}
